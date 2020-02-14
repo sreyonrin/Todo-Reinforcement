@@ -18,6 +18,7 @@ DATE_HTML.innerHTML = today.toLocaleString("en-US", options);
 let todoItems = [];
 let id = 0;
 
+
 document.addEventListener("keyup", event => {
 	if (event.code === "Enter") {
     const inputValue = INPUT_HTML.value;
@@ -36,18 +37,29 @@ function clearInput() {
 }
 
 function addTodo(todoName) {
-	todoItems.push({name: todoName, id : id, done: false});
+  todoItems.push({name: todoName, id : id, done: false});
+  // 2 Increment id
+  id++;
+  //3. save JSON
+  saveJson()
+  //4.update html
 	updateList();
 }
 
 function updateList() {
   let code = "";
-  for(let item of todoItems) {                
-    code += `<li class="item">
-        <i class="fa ${item.done ? CHECK_STYLE : UNCHECK_STYLE} co" job="complete" id=""></i>
-          <p class="text ${item.done ? LINE_THOUGH_STYLE : "" }">${item.name}</p>
-        <i class="fa fa-trash-o de" job="delete" id=""></i>
+  for(let item of todoItems) {
+	// TODO
+    code += `<li class = "item">
+        <i class = "fa ${item.done ? CHECK_STYLE : UNCHECK_STYLE} co" job = "complete" id = "${item.id}"></i>
+        <p class = "text ${item.done ? LINE_THOUGH_STYLE: ""}">${item.name}</p>
+        <i class = "fa fa-trash-o de" job = "delete" id = "${item.id}"></i>
     </li>`;
+  // TODO: display to 
   LIST_HTML.innerHTML = code;
   }
+}
+
+function saveJson(){
+ localStorage.setItem("TODO",JSON.stringify(todoItems));
 }
