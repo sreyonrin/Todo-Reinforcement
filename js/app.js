@@ -15,14 +15,18 @@ const options = {
 const today = new Date();
 DATE_HTML.innerHTML = today.toLocaleString("en-US", options);
 
+// TODO: create array name : todoItems is empty
+let todoIems = [];
+// TODO: create id with value 0
+let id = 0;
+
 document.addEventListener("keyup", event => {
-	if (event.code == "Enter") {
+	if (event.code === "Enter") {
     const inputValue = INPUT_HTML.value;
 
     if (inputValue != null) {
       // 1. add the todo
-    // TODO: call addTodo function
-      addTodO(inputValue);
+	  addTodo(inputValue);
       // 2.  Clear input
       clearInput();
     }
@@ -33,6 +37,9 @@ function clearInput() {
 	INPUT_HTML.value = "";
 }
 
-function addTodO(todoName) {
-	console.log(todoName);
+function addTodo(todoName) {
+  // TODO: push new valueto array todoItems with name , id, done
+  todoIems.push({name: todoName, id : id, done: false});
+  console.log(todoIems);
+	// console array
 }
